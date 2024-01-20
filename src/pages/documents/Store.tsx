@@ -121,7 +121,7 @@ const Store = () => {
         designed in such a way that it is made leak-proof and the material in it
         can be stored for up to 12 days. Ishwara is raising its step towards a
         safer earth; we need to do the same by using disposable paper products.
-      </StyledTypography>
+      </StyledTypography> 
     </>
   );
 };

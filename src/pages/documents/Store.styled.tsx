@@ -1,4 +1,4 @@
-import { Paper, Typography } from "@mui/material";
+import { Link, Paper, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const SlideContainer = styled("div")`
@@ -46,7 +46,7 @@ font-size: 13px;
 
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   color: #0000ff;
   transition: color 0.3s ease;
