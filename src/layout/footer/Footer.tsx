@@ -7,20 +7,20 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { Grid } from "@mui/material";
 import {
   CustomTypography,
   DivWrapper,
   FooterWrapper,
   TypographyStyled,
 } from "./Footer.styled";
-import {  Grid } from "@mui/material";
 
 const FooterMain = () => {
   return (
     <>
       <FooterWrapper>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
             <CustomTypography variant="h3">CONTACT US</CustomTypography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
               <RoomIcon sx={{ fontSize: 15, marginRight: 1 }} /> Shanti Auto
@@ -35,13 +35,7 @@ const FooterMain = () => {
               <PhoneIcon sx={{ fontSize: 15, marginRight: 1 }} /> 9811062289
             </Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            sx={{ position: "relative", left: "50px" }}
-          >
+          <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
             <CustomTypography variant="h3">COMPANY PROFILE</CustomTypography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
               Home
@@ -56,7 +50,7 @@ const FooterMain = () => {
               Contact Us
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
             <CustomTypography variant="h3">
               PRODUCTS & SERVICES
             </CustomTypography>
@@ -69,7 +63,7 @@ const FooterMain = () => {
                 item
                 xs={12}
                 md={6}
-                sx={{ position: "relative", right: "50px" }}
+                sx={{ position: "relative", right: { sm: "0px" } }}
               >
                 <Typography variant="body2">Paper boxes</Typography>
                 <Typography variant="body2">Paper containers</Typography>
@@ -82,7 +76,7 @@ const FooterMain = () => {
                 item
                 xs={12}
                 md={6}
-                sx={{ position: "relative", right: "50px" }}
+                sx={{ position: "relative", right: { sm: "0px" } }}
               >
                 <Typography variant="body2">Paper glass</Typography>
                 <Typography variant="body2">Bakery boxes</Typography>
@@ -92,13 +86,16 @@ const FooterMain = () => {
           <Grid item xs={12} sm={6} md={3}>
             <CustomTypography variant="h3">CONNECT WITH US</CustomTypography>
             <DivWrapper
-              sx={{ display: "flex", gap: "15px", alignItems: "center" }}
+              sx={{
+                gap: "20px",
+            
+              }}
             >
-              <FacebookRoundedIcon sx={{ fontSize: 30 }} />
-              <InstagramIcon sx={{ fontSize: 30 }} />
-              <WhatsAppIcon sx={{ fontSize: 30 }}/>
-              <TwitterIcon sx={{ fontSize: 30 }}/>
-              <LinkedInIcon sx={{ fontSize: 30 }} />
+              <FacebookRoundedIcon sx={{ fontSize: 30,marginRight: 1  }} />
+              <InstagramIcon sx={{ fontSize: 30,marginRight: 1  }} />
+              <WhatsAppIcon sx={{ fontSize: 30,marginRight: 1  }} />
+              <TwitterIcon sx={{ fontSize: 30,marginRight: 1  }} />
+              <LinkedInIcon sx={{ fontSize: 30,marginRight: 1  }} />
             </DivWrapper>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
               We are known for manufacturing and supplying of a wide assortment

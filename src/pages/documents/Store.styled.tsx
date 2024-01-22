@@ -5,6 +5,9 @@ export const SlideContainer = styled("div")`
   display: flex;
   overflow-x: auto;
   padding: 15px;
+  @media (max-width: 768px) {
+    padding: 10px;  
+  }
 `;
 
 export const SlideItem = styled(Paper)`
@@ -26,6 +29,13 @@ export const SlideItem = styled(Paper)`
     vertical-align: middle;
     border-style: none;
   }
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 65px;
+    margin-right: 10px;
+    padding: 5px;
+  }
 `;
 export const StyledTypographyWrapper = styled(Typography)`
   margin-bottom: 0.5rem;
@@ -36,6 +46,10 @@ export const StyledTypographyWrapper = styled(Typography)`
   color: #747474;
   margin-top: 8px;
   margin: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 2em;
+  }
 `;
 
 export const StyledTypography = styled(Typography)`
@@ -43,6 +57,11 @@ color: #747474;
 lineHeight: 24px;
 margin: 1%;
 font-size: 13px;
+
+@media (max-width: 768px) {
+  font-size: 12px;
+}
+
 
 `;
 
