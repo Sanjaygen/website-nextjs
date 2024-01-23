@@ -1,4 +1,5 @@
-import { Box, Container, Link, MobileStepper, Typography } from "@mui/material";
+import { Box, Button, Container, Link, MobileStepper, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import styled from "styled-components";
 
 export const StyledClientContainer = styled.section`
@@ -18,12 +19,18 @@ export const MobileStepperStyled = styled(MobileStepper)`
     background-color:transparent;
     justify-content:center;
     margin-top:14px;
+    padding:0px;
 
-       .MuiMobileStepper-dot {
+    .MuiMobileStepper-dot {
         background-color: white; 
         height:12px;
         width:12px;
+        margin:0 6px;
 
+    }
+    .MuiMobileStepper-dotActive {
+        background-color: transparent;
+        border:1px solid white;
     }
 
 `;
@@ -46,15 +53,15 @@ export const ClientImg = styled('div')`
     color: #ffffff;
     display: inline-block;
     min-height: 56px;
-    padding-left: 70px;
     position: relative;
     text-align: left;
 
 `;
 export const ClientTitle = styled('div')`
+align-items:center;
 font-size: 14px;
 line-height: 24px;
-padding:  10px;
+padding:  15px;
 transition: all 0.4s ease 0s;
 font-weight: 500;
 `;
@@ -77,6 +84,9 @@ export const AvatherStyled = styled('div')`
     display:flex;
     justify-content: center;
     align-items: center;
+    color:white;   
+`;
+export const ButtonStyled = styled(Button)`
     color:white;   
 `;
 
