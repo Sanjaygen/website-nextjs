@@ -31,15 +31,11 @@ return (
                       <>
                       <ProductsLink>Products<ArrowDropDownIcon sx={{position:'relative',top:'5px'}} />
                          <DropDown>
-                            <DropDownList>
-                                <StyledLink href='#paper-bowls'>PAPER BOWLS</StyledLink>                                
-                                <StyledLink href='#paper-lids'>PAPER LIDS</StyledLink>                                
+                            <DropDownList>                         
                                 <StyledLink href='#paper-tubes'>PAPER TUBES</StyledLink>                                
-                                <StyledLink href='#paper-cups'>PAPER CUPS</StyledLink>                                
-                                <StyledLink href='#paper-boxes'>PAPER BOXES</StyledLink>                                
+                                <StyledLink href='#paper-cups'>PAPER CUPS</StyledLink>                                                               
                                 <StyledLink href='#paper-glass'>PAPER GLASS</StyledLink>                                
-                                <StyledLink href='#paper-containers'>PAPER CONTAINERS</StyledLink>                                
-                                <StyledLink href='#bakery-boxes'>BAKERY BOXES</StyledLink>                                
+                                <StyledLink href='#paper-containers'>PAPER CONTAINERS</StyledLink>                                  
                             </DropDownList>
                          </DropDown>
                          </ProductsLink>
