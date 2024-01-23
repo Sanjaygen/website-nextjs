@@ -49,31 +49,7 @@ const Store = () => {
         has emerged as one of the top suppliers of disposable paper products in
         Delhi NCR and other parts of India.
       </StyledTypography>
-
-      <StyledTypography variant="body2">
-        <StyledLink href="#paper-bowls">Paper Bowls in India :</StyledLink>
-        Ishwara supplies a wide range of paper bowls in Delhi NCR and India. In
-        the span of 2 years, Ishwara has grown as one of the best and highly
-        esteemed manufacturers of disposable paper products. Our paper bowls are
-        available in Delhi NCR and different parts of India. Our paper bowls are
-        of high quality and are available in different shapes and sizes. We use
-        the world finest raw materials to manufacture our paper bowls and other
-        products. Our products are manufactured under the strict supervision of
-        experts. We have won our client trust over the years.
-      </StyledTypography>
-
-      <StyledTypography variant="body2">
-        <StyledLink href="#paper-lids">Paper Lids in India :</StyledLink>
-        Disposable paper products are the best alternative for plastic products.
-        This is the green revolution era, and we too need to get responsible
-        towards the earth. People have started understanding the importance of
-        the green revolution and are shifting towards disposable paper products
-        for food packaging. Ishwara has emerged as one of the most reputed
-        disposable paper cups manufacturers in the years. People across India
-        and around the world consider Ishwara for its paper lids. We deal with
-        quality, and our products have set the mark in the market.
-      </StyledTypography>
-
+      
       <StyledTypography variant="body2">
         <StyledLink href="#paper-tubs">Paper Tubs in India :</StyledLink>
         Ishwara paper tubs are known for their sizes and perfect fitting of
@@ -99,17 +75,6 @@ const Store = () => {
         quality checks. We also take care of our clients other demands like
         printing logo, image, brand promotion, etc. We take pride in being
         recognized as the best disposable paper cups manufacturer in India.
-      </StyledTypography>
-
-      <StyledTypography variant="body2">
-        <StyledLink href="#paper-boxes">Paper Boxes in India :</StyledLink>
-        Industries are expanding and acknowledging the use of paper products.
-        Our wide range of paper boxes is customized according to customers
-        demand. Our highly skilled workers and high-tech machineries have
-        brought us a long way in the disposable paper products market. Ishwara
-        is one of the leading and recognized disposable paper cups manufacturers
-        in India which manufactures six different products like paper cups,
-        paper boxes, paper lids, paper bowls, paper glasses, and paper tubs.
       </StyledTypography>
 
       <StyledTypography variant="body2">
