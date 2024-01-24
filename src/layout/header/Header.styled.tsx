@@ -44,17 +44,13 @@ export const ListNavbar = styled("ul")<{ isClick?: boolean }>`
     display: ${(props) => (props.isClick ? "flex" : "none")};
   }
 `;
-export const NavbarList = styled("li")`
-  list-style-type: none;
-  margin-top: 15px;
-  font-size: 14px;
-  text-transform: uppercase;
-`;
-export const AnchorLink = styled(Link)`
+export const AnchorLink = styled("ul")`
   margin-left: 20px;
   text-decoration: none;
   color: #1f5b36;
-  font-size: 14px;
+  font-size: 20px;
+  margin-top:40px;
+  text-decoration:none;
   &:hover {
     color: #ffc107;
   }
@@ -64,9 +60,19 @@ export const AnchorLink = styled(Link)`
   }
 `;
 
+export const LinkProduct = styled("ul")`
+   color:#1f5b36;
+   margin-top:35px;
+   font-size:20px;
+   @media(max-width:600px){
+     margin-top:10px;
+   }  
+`
+
 export const ButtonStyles = styled("button")`
-  width: 200px;
+  height:50px;
   background: #1f5b36;
+  margin-top:30px;
   color: #fff;
   margin-right: 60px;
   margin-left: 80px;
@@ -78,22 +84,29 @@ export const ButtonStyles = styled("button")`
     margin-bottom:20px;
   }
 `;
-export const DropDown = styled("div")`
+export const DropDown = styled("ul")`
   position: absolute;
-  margin-left: 135px;
+  top:30px;
+  padding:10px;
+  margin-left: -10px;
+  border-left:5px solid orange;
   font-size: 14px;
   width:200px;
   color: #1f5b36;
   background: #fff;
-  margin-top: -10px;
-  border-left: 5px solid orange;
   display: none;
+  &:hover {
+    background: #1f5b36;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
   @media (max-width: 600px) {
+    top:0px;
     width: 200px;
     z-index:100;
   }
 `;
-export const ProductsLink = styled(Link)`
+export const ProductsLink = styled('div')`
   text-decoration: none;
   color: #1f5b36;
   font-size: 14px;
@@ -110,7 +123,7 @@ export const ProductsLink = styled(Link)`
   }
 `;
 export const DropDownList = styled("div")`
-  list-style-type: none;
+  list-style-type: none; 
 `;
 export const StyledLink = styled(Link)`
   text-decoration: none;
@@ -119,21 +132,16 @@ export const StyledLink = styled(Link)`
   display: block;
   margin-top: 15px;
   padding: 5px;
-  &:hover {
-    background: #1f5b36;
-    color: #fff;
-    transition: all 0.3s ease;
-  }
+ 
 `;
 export const MenuIconOpen = styled("div")`
   display: none;
-  top: 70px;
+  top: 88px;
   position: absolute;
   cursor: pointer;
   @media (max-width: 600px) {
     display: block;
     left: 85%;
-    font-size: 25px;
   }
 `;
 export const IconClose = styled("div")`
@@ -144,7 +152,7 @@ export const IconClose = styled("div")`
   @media (max-width: 600px) {
     display: block;
     left: 80%;
-    font-size: 10px;
+    font-size: 10px;  
     z-index: 9999;
     top: 10px;
   }
@@ -152,5 +160,4 @@ export const IconClose = styled("div")`
 
 export const StyledIcon = styled("div")`
 
-  }
 `;

@@ -56,31 +56,11 @@ const FooterMain = () => {
             </CustomTypography>
             <Grid container spacing={0} sx={{ marginTop: "10px" }}>
               <Grid item xs={12} md={6}>
-                <Typography variant="body2">Paper bowls</Typography>
                 <Typography variant="body2">Paper tubs</Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                sx={{ position: "relative", right: { sm: "0px" } }}
-              >
-                <Typography variant="body2">Paper boxes</Typography>
-                <Typography variant="body2">Paper containers</Typography>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Typography variant="body2">Paper lids</Typography>
                 <Typography variant="body2">Paper cups</Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                sx={{ position: "relative", right: { sm: "0px" } }}
-              >
                 <Typography variant="body2">Paper glass</Typography>
-                <Typography variant="body2">Bakery boxes</Typography>
-              </Grid>
+                <Typography variant="body2">Paper containers</Typography>
+              </Grid> 
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
