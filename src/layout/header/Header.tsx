@@ -50,7 +50,7 @@ const Header = () => {
             <Link href="#" style={{textDecoration:'none'}}>
               <LinkProduct>
                 Product
-                <ArrowDropDownIcon sx={{ position: "relative", top: "5px" }} />
+                <ArrowDropDownIcon  sx={{ position: "relative", top: "5px" }} />
               </LinkProduct>
             </Link>
 
@@ -70,7 +70,7 @@ const Header = () => {
             <Link href="/" style={{textDecoration:'none'}}>
               <AnchorLink>Blog</AnchorLink>
             </Link>
-            <Link href="/" style={{textDecoration:'none'}}>
+            <Link href="/contact" style={{textDecoration:'none'}}>
               <AnchorLink>Contact</AnchorLink>
             </Link>
             <ButtonStyles>DOWNLOAD CATALOGUE</ButtonStyles>
