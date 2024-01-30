@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -8,6 +8,7 @@ import { Link } from "@mui/material";
 import {AnchorLink,ButtonStyles,DropDown,HeaderDiv,IconClose,ImageLogo,LinkProduct,ListNavbar,MenuIconOpen,ProductsLink,StyledIcon,TopHeader,TopTypography,} from "./Header.styled";
 
 const Header = () => {
+  const [data, setData] = useState([]);
   const [isClick, setisClick] = useState(false);
 
   const toggleNavbar = () => {
@@ -16,6 +17,17 @@ const Header = () => {
 
   const url = ["http://ishwara.in/img/logo.jpg"];
 
+    
+  const getHeader = async()  => {
+    const response = await fetch("http://localhost:1337/api/headers");
+    const result = await response.json();
+    setData(result)
+  }
+
+  useEffect(() => {
+    getHeader()
+  },[])
+  
   return (
     <>
       <TopHeader>
