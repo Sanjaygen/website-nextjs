@@ -49,7 +49,7 @@ const ActionAreaCard = () => {
                     <ThypographyProduct variant="h5">
                       {result.text}
                     </ThypographyProduct>
-                    <StyledThypography variant="subtitle1" color='blue' style={{cursor:'pointer'}}>
+                    <StyledThypography variant="subtitle1" color='#007bff' style={{cursor:'pointer'}}>
                       {result.lable}
                     </StyledThypography>
               </StyledCardContent >
