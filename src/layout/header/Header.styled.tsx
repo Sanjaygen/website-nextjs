@@ -49,6 +49,7 @@ export const AnchorLink = styled("ul")`
   text-decoration: none;
   color: #1f5b36;
   font-size: 20px;
+  font-family: oswald;
   margin-top:40px;
   text-decoration:none;
   &:hover {
@@ -62,7 +63,8 @@ export const AnchorLink = styled("ul")`
 
 export const LinkProduct = styled("ul")`
    color:#1f5b36;
-   margin-top:35px;
+  font-family: oswald;
+   margin-top:40px;
    font-size:20px;
    @media(max-width:600px){
      margin-top:10px;
@@ -86,8 +88,9 @@ export const ButtonStyles = styled("button")`
 `;
 export const DropDown = styled("ul")`
   position: absolute;
-  top:30px;
+  top:40px;
   padding:10px;
+  font-family: oswald;
   margin-left: -10px;
   border-left:5px solid orange;
   font-size: 14px;

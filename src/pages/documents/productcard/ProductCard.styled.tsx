@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 export const StyledCard = styled(CardActionArea)`
   &:hover{
-     transform:scale(1.2)
+     transform:scale(1.2);
+     transition:all 0.4s ease 0s;
   }
 `
 export const StyledCardContent = styled(CardContent)`
@@ -25,6 +26,7 @@ export const StyledThypography = styled(Typography)`
 `
 export const ThypographyProduct = styled(Typography)`
     text-align:center;
+    font-family:oswald;
     @media(max-width:900px){
         font-size:13px;
     } 

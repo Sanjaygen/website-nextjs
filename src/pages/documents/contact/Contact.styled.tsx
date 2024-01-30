@@ -30,6 +30,7 @@ export const Title = styled("h2")`
   position: relative;
   top: 30px;
   margin: 0;
+  font-family: oswald;
   padding: 0;
   text-transform: uppercase;
   font-size: 1em;

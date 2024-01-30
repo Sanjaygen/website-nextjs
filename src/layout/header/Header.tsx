@@ -5,7 +5,21 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "@mui/material";
-import {AnchorLink,ButtonStyles,DropDown,HeaderDiv,IconClose,ImageLogo,LinkProduct,ListNavbar,MenuIconOpen,ProductsLink,StyledIcon,TopHeader,TopTypography,} from "./Header.styled";
+import {
+  AnchorLink,
+  ButtonStyles,
+  DropDown,
+  HeaderDiv,
+  IconClose,
+  ImageLogo,
+  LinkProduct,
+  ListNavbar,
+  MenuIconOpen,
+  ProductsLink,
+  StyledIcon,
+  TopHeader,
+  TopTypography,
+} from "./Header.styled";
 
 const Header = () => {
   const [data, setData] = useState([]);
@@ -17,17 +31,16 @@ const Header = () => {
 
   const url = ["http://ishwara.in/img/logo.jpg"];
 
-    
-  const getHeader = async()  => {
+  const getHeader = async () => {
     const response = await fetch("http://localhost:1337/api/headers");
     const result = await response.json();
-    setData(result)
-  }
+    setData(result);
+  };
 
   useEffect(() => {
-    getHeader()
-  },[])
-  
+    getHeader();
+  }, []);
+
   return (
     <>
       <TopHeader>
@@ -40,40 +53,72 @@ const Header = () => {
           <img src={url[0]} alt="Ishwara Logo" />
         </ImageLogo>
         <ListNavbar isClick={isClick}>
-            <Link href="/" style={{textDecoration:'none'}}>
-              <AnchorLink>Home</AnchorLink>
-            </Link>
-            <Link href="/" style={{textDecoration:'none'}}>
-              <AnchorLink>About</AnchorLink>
-            </Link>
-            <ProductsLink>
-            <Link href="#" style={{textDecoration:'none'}}>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <AnchorLink>Home</AnchorLink>
+          </Link>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <AnchorLink>About</AnchorLink>
+          </Link>
+          <ProductsLink>
+            <Link href="#" style={{ textDecoration: "none" }}>
               <LinkProduct>
                 Product
-                <ArrowDropDownIcon  sx={{ position: "relative", top: "5px" }} />
+                <ArrowDropDownIcon sx={{ position: "relative", top: "5px" }} />
               </LinkProduct>
             </Link>
 
-                <Link href="#paper-tube" style={{textDecoration:'none',position:'absolute',top:'40px'}}>
-                  <DropDown>PAPER TUBS</DropDown>
-                </Link>
-                <Link href="#paper-cups" style={{textDecoration:'none',position:'absolute',top:'70px'}}>
-                  <DropDown>PAPER CUPS</DropDown>
-                </Link>
-                <Link href="#paper-glass" style={{textDecoration:'none',position:'absolute',top:'100px'}}>
-                  <DropDown>PAPER GLASS</DropDown>
-                </Link>
-                <Link href="#paper-cont" style={{textDecoration:'none',position:'absolute',top:'128px'}}>
-                  <DropDown>PAPER CONTAINERS</DropDown>
-                </Link>
-                </ProductsLink>
-            <Link href="/" style={{textDecoration:'none'}}>
-              <AnchorLink>Blog</AnchorLink>
+            <Link
+              href="#paper-tube"
+              sx={{
+                textDecoration: "none",
+                position: "absolute",
+                top: "40px",
+                zIndex: "100",
+              }}
+            >
+              <DropDown>PAPER TUBS</DropDown>
             </Link>
-            <Link href="/contact" style={{textDecoration:'none'}}>
-              <AnchorLink>Contact</AnchorLink>
+            <Link
+              href="#paper-cups"
+              sx={{
+                textDecoration: "none",
+                position: "absolute",
+                top: "75px",
+                zIndex: "100",
+              }}
+            >
+              <DropDown>PAPER CUPS</DropDown>
             </Link>
-            <ButtonStyles>DOWNLOAD CATALOGUE</ButtonStyles>
+            <Link
+              href="#paper-glass"
+              sx={{
+                textDecoration: "none",
+                position: "absolute",
+                top: "110px",
+                zIndex: "100",
+              }}
+            >
+              <DropDown>PAPER GLASS</DropDown>
+            </Link>
+            <Link
+              href="#paper-cont"
+              sx={{
+                textDecoration: "none",
+                position: "absolute",
+                top: "145px",
+                zIndex: "100",
+              }}
+            >
+              <DropDown>PAPER CONTAINERS</DropDown>
+            </Link>
+          </ProductsLink>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <AnchorLink>Blog</AnchorLink>
+          </Link>
+          <Link href="/contact" style={{ textDecoration: "none" }}>
+            <AnchorLink>Contact</AnchorLink>
+          </Link>
+          <ButtonStyles>DOWNLOAD CATALOGUE</ButtonStyles>
         </ListNavbar>
       </HeaderDiv>
       <StyledIcon onClick={toggleNavbar}>
@@ -84,7 +129,7 @@ const Header = () => {
         ) : (
           <>
             <MenuIconOpen>
-              <MenuIcon style={{fontSize:'28px',fontWeight:'bold'}}/>
+              <MenuIcon style={{ fontSize: "28px", fontWeight: "bold" }} />
             </MenuIconOpen>
             <ListNavbar />
           </>
