@@ -9,9 +9,9 @@ export type LayoutProps = {
 const MainLayout = ({ children }: LayoutProps) => {
     return (
       <>
-        <Header/>
+        {/* <Header/>
         <AboutUs />
-        <FooterMain/>
+        <FooterMain/> */}
       </>
     );
   };
