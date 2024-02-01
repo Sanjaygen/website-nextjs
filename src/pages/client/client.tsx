@@ -15,7 +15,7 @@ export const Client = () => {
             <StyledClientContainer>
                 <ClientContainer>
                     <StyledDiv>
-                        <Header variant='h3'>WHAT'S CLIENT SAY?</Header>
+                        <Header variant='h3'>WHAT&apos;S CLIENT SAY?</Header>
                     </StyledDiv>
                     < SwipeableTextMobileStepper />
                 </ClientContainer>
