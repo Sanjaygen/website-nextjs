@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -20,105 +20,141 @@ import {
   TopHeader,
   TopTypography,
 } from "./Header.styled";
+import { gql, useQuery } from "@apollo/client";
 
+const HEADERDATA = gql`
+  query GetHeaders {
+    headers {
+      data {
+        attributes {
+          Head {
+            content
+            bgcolor
+          }
+          navbar {
+            ... on ComponentNavBarImages {
+              logo {
+                data {
+                  attributes {
+                    name
+                    alternativeText
+                    url
+                  }
+                }
+              }
+            }
+            ... on ComponentNavBarHome {
+              Title
+            }
+            ... on ComponentNavBarAbout {
+              Title
+            }
+            ... on ComponentNavBarProducts {
+              title
+              PRODUCTS
+            }
+            ... on ComponentNavBarBlog {
+              Title
+            }
+            ... on ComponentNavBarContact {
+              Title
+            }
+            ... on ComponentElementButtonlink {
+              title
+              isExternal
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 const Header = () => {
-  const [data, setData] = useState([]);
-  const [isClick, setisClick] = useState(false);
+  const { loading, error, data } = useQuery(HEADERDATA);
 
+  const [isClick, setisClick] = useState(false);
   const toggleNavbar = () => {
     setisClick(!isClick);
   };
 
-  const url = ["http://ishwara.in/img/logo.jpg"];
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error</p>;
 
-  const getHeader = async () => {
-    const response = await fetch("http://localhost:1337/api/headers");
-    const result = await response.json();
-    setData(result);
-  };
+  console.log(data);
 
-  useEffect(() => {
-    getHeader();
-  }, []);
+  const headersData = data.headers.data[0].attributes;
+  const buttonLink = headersData.navbar.find(
+    (item: any) => item.type === "PRIMARY_1f5b36"
+  );
+  console.log(headersData);
+  const logoAttributes = headersData.navbar
+    .filter((item: any) => item.__typename === "ComponentNavBarImages")
+    .map((item: any) => item.logo.data[0].attributes);
+  console.log("logoAttributes:", logoAttributes);
+
+  const productsData = headersData.navbar.find(
+    (item: any) => item.__typename === "ComponentNavBarProducts"
+  );
+  const productsLink =
+    productsData && productsData.PRODUCTS && productsData.PRODUCTS.items
+      ? productsData.PRODUCTS.items
+      : [];
 
   return (
     <>
       <TopHeader>
         <TopTypography variant="body2">
-          Get your paper disposals from your entrusted brand, Ishwara
+          {headersData.Head.content}
         </TopTypography>
       </TopHeader>
       <HeaderDiv>
         <ImageLogo>
-          <img src={url[0]} alt="Ishwara Logo" />
+          {logoAttributes.length > 0 && (
+            <img
+              src={logoAttributes[0].url}
+              alt={logoAttributes[0].alternativeText}
+              style={{ width: "100%", height: "auto" }}
+            />
+          )}
         </ImageLogo>
         <ListNavbar isClick={isClick}>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <AnchorLink>Home</AnchorLink>
-          </Link>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <AnchorLink>About</AnchorLink>
-          </Link>
-          <ProductsLink>
-            <Link href="#" style={{ textDecoration: "none" }}>
-              <LinkProduct>
-                Product
-                <ArrowDropDownIcon sx={{ position: "relative", top: "5px" }} />
-              </LinkProduct>
-            </Link>
-
+          {headersData.navbar.map((navItem: any, index: number) => (
             <Link
-              href="#paper-tube"
-              sx={{
-                textDecoration: "none",
-                position: "absolute",
-                top: "40px",
-                zIndex: "100",
-              }}
+              key={index}
+              href={navItem.link}
+              style={{ textDecoration: "none" }}
             >
-              <DropDown>PAPER TUBS</DropDown>
+              <AnchorLink>{navItem.Title}</AnchorLink>
             </Link>
-            <Link
-              href="#paper-cups"
-              sx={{
-                textDecoration: "none",
-                position: "absolute",
-                top: "75px",
-                zIndex: "100",
-              }}
-            >
-              <DropDown>PAPER CUPS</DropDown>
-            </Link>
-            <Link
-              href="#paper-glass"
-              sx={{
-                textDecoration: "none",
-                position: "absolute",
-                top: "110px",
-                zIndex: "100",
-              }}
-            >
-              <DropDown>PAPER GLASS</DropDown>
-            </Link>
-            <Link
-              href="#paper-cont"
-              sx={{
-                textDecoration: "none",
-                position: "absolute",
-                top: "145px",
-                zIndex: "100",
-              }}
-            >
-              <DropDown>PAPER CONTAINERS</DropDown>
-            </Link>
-          </ProductsLink>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <AnchorLink>Blog</AnchorLink>
-          </Link>
-          <Link href="/contact" style={{ textDecoration: "none" }}>
-            <AnchorLink>Contact</AnchorLink>
-          </Link>
-          <ButtonStyles>DOWNLOAD CATALOGUE</ButtonStyles>
+          ))}
+          {productsLink.length > 0 && (
+            <ProductsLink>
+              <Link href="#" style={{ textDecoration: "none" }}>
+                <LinkProduct>
+                  Product
+                  <ArrowDropDownIcon
+                    sx={{ position: "relative", top: "5px" }}
+                  />
+                </LinkProduct>
+              </Link>
+              {productsLink.map((productItem: any, index: number) => (
+                <Link
+                  key={index}
+                  href={productItem.link}
+                  sx={{
+                    textDecoration: "none",
+                    position: "absolute",
+                    top: `${40 + 35 * index}px`,
+                    zIndex: "100",
+                  }}
+                >
+                  <DropDown>{productItem.title}</DropDown>
+                </Link>
+              ))}
+            </ProductsLink>
+          )}
+          {buttonLink && <ButtonStyles>{buttonLink.title}</ButtonStyles>}
         </ListNavbar>
       </HeaderDiv>
       <StyledIcon onClick={toggleNavbar}>
