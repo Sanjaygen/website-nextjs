@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import React from 'react';
 import {
@@ -8,27 +9,26 @@ import {
   StyledLeftPara,
   StyledRightContent
 } from './about.styled'
-import logo from '../../../public/images/papercub.png';
+import { useQuery } from '@apollo/client';
+import { QUERY } from '@/pages/homepage/query';
+import { api } from '@/service/backend-api';
 
-const AboutUs = () => {
+const AboutUs = (props: any) => {
+
+  const about = props;
+  console.log('about',about)
+
+  const { loading, error, data } = useQuery(QUERY);
+
   const LeftContent = () => {
     return (
-      <StyledLeftContent>
-
-        <Head variant='h2'>About Us</Head>
-        <StyledLeftPara>The very idea of plastic-free earth is no less than a dream for millions. Every single step can be a revolution in the times to come.
-          What matters is the choices that we make today in order to give our generations a clean and green earth.</StyledLeftPara>
-
-        <StyledLeftPara>With the same ideologies our CEO, Mr.Saurabh Jain had founded Brand ISHWARA under the grand umbrella of Shanti Auto Industries in 2019.
-          The idea behind ISHWARA was to invent user-friendly paper disposals that are safe for the environment and would be ideal in eradicating the
-          usage of plastic from the industry in the times to come.</StyledLeftPara>
-
-        <StyledLeftPara>From single machinery to the overhaul of 15 machines, we have been able to build a reliable and reputed brand setup in the paper cup industry
-          in the span of 2 years respectively. At Ishwara, we manufacture our tableware with 100% ITC paper with high GSM, thus delivering efficiency and quality
-          at one place only. Everything from mini cups to big tubs is produced under a single roof to ensure maximum uniformity, efficiency, and efficacy.</StyledLeftPara>
-
-        <StyledLeftPara>Our esteemed clients include some of the most household names like Haldiram, Chaayos, Giani's, and Bikanervala, so on and so forth, Contact us if you wish
-          to enroute your brand for the eco-friendly alternative. For more information, scroll our website .</StyledLeftPara>
+      <StyledLeftContent style={{ color:`${about[0]?.colors?.theme[0]?.colors?.text}`}}>
+        <Head variant='h2'>{about[0]?.Title}</Head>
+        <StyledLeftPara >{about[0]?.description1}</StyledLeftPara>
+        <StyledLeftPara >{about[0]?.description2}</StyledLeftPara>
+        <StyledLeftPara >{about[0]?.description3}</StyledLeftPara>
+        <StyledLeftPara >{about[0]?.description4}</StyledLeftPara>
+        
 
       </StyledLeftContent>
     );
@@ -36,16 +36,16 @@ const AboutUs = () => {
   const RightContent=()=>{
     return(
       <StyledRightContent>
-      <img src={logo.src} height='403px' alt="Ishwara Logo" />
+      <img src={api+about[0]?.image.data.attributes.url} height='403px' alt="Ishwara Logo" />
     </StyledRightContent>
     )
   }
-
+  
 
   return (
 
-    <StyledAboutUsContainer>
-      <ContentWrapper>
+    <StyledAboutUsContainer style={{ background: `url(${api + about[0]?.backgroundImage?.data[0]?.attributes?.url})`}} >
+      <ContentWrapper style={{ backgroundColor: `${about[0]?.colors?.theme[0]?.colors?.bgcolor}`}}>
         {LeftContent()}
         {RightContent()}
       </ContentWrapper>

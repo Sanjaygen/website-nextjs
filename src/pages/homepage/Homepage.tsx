@@ -4,24 +4,40 @@ import Footer from "@/layout/footer/Footer";
 import Header from "@/layout/header/Header";
 import Store from "../documents/store/Store";
 import AboutUs from "@/layout/about/about";
-import { Client } from "../client/client";
+import { Client } from "../documents/client/client";
 import ProductCard from "../documents/productcard/ProductCard";
 import { Contact } from "../documents/contact/Contact";
 import { useQuery } from "@apollo/client";
 import { QUERY } from "./query";
+import ProductDetails from "../documents/productdetails/ProductDetails";
+import Blog from "../documents/blog/Blog";
+
 
 const HomePage = () => {
   const { data, loading, error } = useQuery(QUERY);
-  console.log(data,'data')
+  const homeData = data?.homes
+  const {PRODUCTS,aboutus,clientreviews,client,Details,footer} =  homeData?.data[0]?.attributes || {}
+   console.log(PRODUCTS,'PRODUCTS')
+   console.log(aboutus,'aboutus')
+   console.log(clientreviews,'clientreviews')
+   console.log(client,'client')
+   console.log(Details,'Details')
+   console.log('footer',footer)
+
+  
+
+
   return (
     <>
       <Header />
-      <ProductCard />
-      <AboutUs />
-      <Client />
-      <Store />
-      <Contact />
-      <Footer />
+      <ProductCard {...PRODUCTS} />
+      <AboutUs {...aboutus}/>
+      <Client {...clientreviews} />
+      <Store {...client}/> 
+      <ProductDetails {...Details}/>
+      {/* <Contact /> */}
+      <Blog/> 
+      <Footer {...footer} />
     </>
   );
 };

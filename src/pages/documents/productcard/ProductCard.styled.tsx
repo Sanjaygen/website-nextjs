@@ -12,10 +12,18 @@ export const StyledCardContent = styled(CardContent)`
     padding:30px;
     position:relative;
     background:#fff;
-    margin-top:-120px;
+    margin-top:-115px;
     margin-left:12px;
     margin-right:12px;
-    opacity:0.8;
+    margin-bottom:10px;
+    opacity:0.9;
+    transition: margin-top 0.4s ease;
+    @media (max-width: 600px) {
+        margin-top:-105px;
+        margin-left:12px;
+        margin-right:12px;
+      }
+    
     
 `
 export const StyledThypography = styled(Typography)`
