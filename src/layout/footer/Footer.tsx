@@ -15,57 +15,60 @@ import {
   StyledLink,
   TypographyStyled,
 } from "./Footer.styled";
+import { useQuery } from "@apollo/client";
+import { QUERY } from "@/pages/homepage/query";
 
-const FooterMain = () => {
+const FooterMain = (props:any) => {
+  const footers = props;
+  console.log('footers',footers)
+
+  const { loading, error, data } = useQuery(QUERY);
+
   return (
     <>
       <FooterWrapper>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
-            <CustomTypography variant="h3" sx={{ marginLeft: {xs: 0 , lg: '-90px'} }}>CONTACT US</CustomTypography>
+            <CustomTypography variant="h3" sx={{ marginLeft: {xs: 0 , lg: '-90px'} }}>{footers[0]?.title}</CustomTypography>
             <Typography variant="body2" sx={{ marginTop: "10px", marginLeft: {xs: 0 , lg: '-90px'}, lineHeight: '30px' }}>
-              <RoomIcon sx={{ fontSize: 15, marginRight: 1 }} /> Shanti Auto
-              Industries Plot No. 402- 403, Sector 7, Phase-II, Gurgaon -
-              122052, Haryana, India
+              <RoomIcon sx={{ fontSize: 15, marginRight: 1 }} /> {footers[0]?.addressdetail[0]?.content}</Typography>
+            <Typography variant="body2" sx={{ marginTop: "15px" }}>
+              <EmailIcon sx={{ fontSize: 15, marginRight: 1, marginLeft: {xs: 0 , lg: '-90px'} }} />{footers[0]?.emaildetail[0]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "15px" }}>
-              <EmailIcon sx={{ fontSize: 15, marginRight: 1, marginLeft: {xs: 0 , lg: '-90px'} }} /> Email:-
-              sales@ishwara.in marketing@ishwara.in
-            </Typography>
-            <Typography variant="body2" sx={{ marginTop: "15px" }}>
-              <PhoneIcon sx={{ fontSize: 15, marginRight: 1, marginLeft:{xs: 0 , lg: '-90px'} }} /> 9811062289
+              <PhoneIcon sx={{ fontSize: 15, marginRight: 1, marginLeft:{xs: 0 , lg: '-90px'} }} />{footers[0]?.phonedetail[0]?.number}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 }, marginLeft: {xs: 0 , lg: '30px'} }}>
-            <CustomTypography variant="h3">COMPANY PROFILE</CustomTypography>
+            <CustomTypography variant="h3">{footers[1]?.title}</CustomTypography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-              Home
+              {footers[1]?.company[0]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-              Profile
+            {footers[1]?.company[1]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-              Corporate Video
+            {footers[1]?.company[2]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-              Contact Us
+            {footers[1]?.company[3]?.content}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
             <CustomTypography variant="h3">
-              PRODUCTS & SERVICES
+            {footers[2]?.title}
             </CustomTypography>
             <Grid container spacing={0} sx={{ marginTop: "10px" }}>
               <Grid item xs={12} md={6}>
-                <Typography variant="body2">Paper tubs</Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px" }}>Paper cups</Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px" }}>Paper glass</Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px" }}>Paper containers</Typography>
+                <Typography variant="body2">{footers[2]?.company[0]?.content}</Typography>
+                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footers[2]?.company[1]?.content}</Typography>
+                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footers[2]?.company[2]?.content}</Typography>
+                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footers[2]?.company[3]?.content}</Typography>
               </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginRight: '-50px', marginLeft: {xs: 0 , lg: '20px'} }}>
-            <CustomTypography variant="h3">CONNECT WITH US</CustomTypography>
+            <CustomTypography variant="h3">{footers[3]?.title}</CustomTypography>
             <DivWrapper
               sx={{
                 gap: "20px",
@@ -112,16 +115,13 @@ const FooterMain = () => {
                 ":hover": { background: '#fd7e14' }
               }} />
             </DivWrapper>
-            <Typography variant="body2" sx={{ marginTop: "10px", lineHeight: '25px' }}>
-              We are known for manufacturing and supplying of a wide assortment
-              of Paper Glasses and Bowls
-            </Typography>
+            <Typography variant="body2" sx={{ marginTop: "10px", lineHeight: '25px' }}>{footers[3]?.description}</Typography>
           </Grid>
         </Grid>
       </FooterWrapper>
-      <TypographyStyled variant="body2" sx={{marginLeft:{xs:'0px'}}}>
-        Copyright © ISHWARA | All Rights Reserved
-        <StyledLink href="/">Brandmommy</StyledLink>
+      <TypographyStyled variant="body2" sx={{marginLeft:{xs:'0px'}}} style={{ backgroundColor: `${footers[4]?.colors?.copy[0]?.colors?.becolor}`,color:`${footers[4]?.colors.copy[0].colors.text}`}}>
+      {footers[4]?.title}
+        <StyledLink href="/">{footers[4]?.content}</StyledLink>
       </TypographyStyled>
     </>
   );

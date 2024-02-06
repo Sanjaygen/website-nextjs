@@ -2,8 +2,8 @@ import { Link, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const TopHeader = styled("div")`
-  background-color: #1f5b36;
-  color: #fff;
+  // background-color: #1f5b36;
+  // color: #fff;
   padding: 10px;
 `;
 export const TopTypography = styled(Typography)`
@@ -51,6 +51,7 @@ export const AnchorLink = styled("ul")`
   font-size: 20px;
   font-family: oswald;
   margin-top:40px;
+  cursor:pointer;
   text-decoration:none;
   &:hover {
     color: #ffc107;

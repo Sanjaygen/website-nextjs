@@ -4,13 +4,12 @@ import styled from "styled-components";
 
 export const StyledClientContainer = styled.section`
     display:block;
-    background-image: url('http://ishwara.in/img/banner3-1.jpg');
     background-size: cover !important; 
     background-repeat: no-repeat;
 `;
 
 export const ClientContainer = styled('div')`
-    background: rgb(57 118 84 / 61%);
+    // background: rgb(57 118 84 / 61%);
     padding-bottom: 40px !important;
     padding-top: 70px !important;
 `;

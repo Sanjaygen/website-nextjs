@@ -2,63 +2,48 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import { Container, Grid } from '@mui/material';
 import { StyledCard, StyledCardContent, StyledThypography, ThypographyProduct } from './ProductCard.styled';
+import { QUERY } from '@/pages/homepage/query';
+import { useQuery } from '@apollo/client';
+import { api } from '@/service/backend-api';
 
-const ActionAreaCard = () => {
+const ActionAreaCard = (props : any) => {
+  console.log('product',props);
+  const { data, loading, error,  } = useQuery(QUERY);
 
-  const image = [
-    {
-      "id": 3,
-      "img": "/images/tubs.jpg",
-      "text": "PAPER TUBS",
-      "lable":"View Product"
-    },
-    {
-      "id": 4,
-      "img": "/images/cups.jpg",
-      "text": "PAPER CUPS",
-      "lable":"View Product"
-    },
-    {
-      "id": 6,
-      "img": "/images/glass.jpg",
-      "text": "PAPER GLASS",
-      "lable":"View Product"
-    },
-    {
-      "id": 7,
-      "img": "/images/containers.jpeg",
-      "text": "PAPER CONTAINERS",
-      "lable":"View Product"
-    },
-  ]
+  const homesData = data?.homes?.data || [];
+
   return (
-    <Container>
-      <Grid container spacing={5} style={{ marginTop: '100px' }}>
-        {image.map((result, index) => (
-          <Grid xs={12} sm={4} key={index}>
-            <Card style={{ padding: '10px', marginLeft: '30px', marginTop: '20px' }}>
-              <StyledCard>
-                <CardMedia
-                  component="img"
-                  height="280px"
-                  image={result.img}
-                  alt={result.text}
-                />
-              </StyledCard>
-              <StyledCardContent >
-                    <ThypographyProduct variant="h5">
-                      {result.text}
-                    </ThypographyProduct>
-                    <StyledThypography variant="subtitle1" color='#007bff' style={{cursor:'pointer'}}>
-                      {result.lable}
-                    </StyledThypography>
-              </StyledCardContent >
-            </Card>
+    <>
+      <Grid spacing={5} sx={{ marginTop: '20px'}}  >
+        {homesData.map((home: any, homeIndex: number) => (
+          <Grid  key={homeIndex}  sx={{display:{xs:"block",sm:"flex"},marginLeft:{xs:0,sm:"50px"},marginRight:{xs:0,sm:"40px"}}}>
+            {home.attributes.PRODUCTS.map((product: any, productIndex: number) => (
+              <Card key={productIndex} sx={{ padding: '10px', margin: '10px', marginTop: '20px',width:{xs:"98%",sm:"100%"}}}>
+                <StyledCard>
+                  <CardMedia
+                    component="img"
+                    height="280px"
+                    image={api+product.productimages.data[0].attributes.url}
+                    alt={product.Title}
+                  />
+                </StyledCard>
+                <StyledCardContent>
+                  <ThypographyProduct variant="h5">
+                    {product.Title}
+                  </ThypographyProduct>
+                  <StyledThypography variant="subtitle1" color='#007bff' style={{ cursor: 'pointer' }}>
+                    {product.link}
+                  </StyledThypography>
+                </StyledCardContent>
+              </Card>
+            ))}
           </Grid>
         ))}
       </Grid>
-    </Container>
+      </>
+
   );
-}
+};
+
 
 export default ActionAreaCard;

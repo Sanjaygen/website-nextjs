@@ -8,70 +8,23 @@ import { Link } from "@mui/material";
 import {
   AnchorLink,
   ButtonStyles,
-  DropDown,
   HeaderDiv,
   IconClose,
   ImageLogo,
-  LinkProduct,
   ListNavbar,
   MenuIconOpen,
-  ProductsLink,
   StyledIcon,
   TopHeader,
   TopTypography,
 } from "./Header.styled";
-import { gql, useQuery } from "@apollo/client";
+import {  useQuery } from "@apollo/client";
+import { api } from "@/service/backend-api";
+import { HeaderQuery } from "./Query";
 
-const HEADERDATA = gql`
-  query GetHeaders {
-    headers {
-      data {
-        attributes {
-          Head {
-            content
-            bgcolor
-          }
-          navbar {
-            ... on ComponentNavBarImages {
-              logo {
-                data {
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
-                }
-              }
-            }
-            ... on ComponentNavBarHome {
-              Title
-            }
-            ... on ComponentNavBarAbout {
-              Title
-            }
-            ... on ComponentNavBarProducts {
-              title
-              PRODUCTS
-            }
-            ... on ComponentNavBarBlog {
-              Title
-            }
-            ... on ComponentNavBarContact {
-              Title
-            }
-            ... on ComponentElementButtonlink {
-              title
-              isExternal
-              type
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+
 const Header = () => {
-  const { loading, error, data } = useQuery(HEADERDATA);
+  const { loading, error, data } = useQuery(HeaderQuery);
+  //  console.log('data',data);
 
   const [isClick, setisClick] = useState(false);
   const toggleNavbar = () => {
@@ -80,81 +33,59 @@ const Header = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
+  
+  const headersData = data?.headers?.data[0]?.attributes;
 
-  console.log(data);
-
-  const headersData = data.headers.data[0].attributes;
-  const buttonLink = headersData.navbar.find(
-    (item: any) => item.type === "PRIMARY_1f5b36"
-  );
-  console.log(headersData);
+  // console.log('header',headersData);
+  
   const logoAttributes = headersData.navbar
     .filter((item: any) => item.__typename === "ComponentNavBarImages")
     .map((item: any) => item.logo.data[0].attributes);
-  console.log("logoAttributes:", logoAttributes);
 
-  const productsData = headersData.navbar.find(
-    (item: any) => item.__typename === "ComponentNavBarProducts"
-  );
-  const productsLink =
-    productsData && productsData.PRODUCTS && productsData.PRODUCTS.items
-      ? productsData.PRODUCTS.items
-      : [];
+  const imageLogo = logoAttributes[0].url
+  const alt = logoAttributes[0].alternativeText
+
 
   return (
     <>
-      <TopHeader>
+      <TopHeader style={{backgroundColor:`${headersData.Head[0].colors.theme[0].colors.bgcolor}`,color:`${headersData.Head[0].colors.theme[0].colors.text}`}}>
         <TopTypography variant="body2">
-          {headersData.Head.content}
+          {headersData.Head[0].content}
         </TopTypography>
       </TopHeader>
       <HeaderDiv>
         <ImageLogo>
           {logoAttributes.length > 0 && (
             <img
-              src={logoAttributes[0].url}
-              alt={logoAttributes[0].alternativeText}
-              style={{ width: "100%", height: "auto" }}
+              src={api + imageLogo}
+              alt={alt}
             />
           )}
         </ImageLogo>
         <ListNavbar isClick={isClick}>
           {headersData.navbar.map((navItem: any, index: number) => (
-            <Link
-              key={index}
-              href={navItem.link}
-              style={{ textDecoration: "none" }}
-            >
-              <AnchorLink>{navItem.Title}</AnchorLink>
-            </Link>
-          ))}
-          {productsLink.length > 0 && (
-            <ProductsLink>
-              <Link href="#" style={{ textDecoration: "none" }}>
-                <LinkProduct>
-                  Product
-                  <ArrowDropDownIcon
-                    sx={{ position: "relative", top: "5px" }}
-                  />
-                </LinkProduct>
-              </Link>
-              {productsLink.map((productItem: any, index: number) => (
+            <React.Fragment key={index}>
+              {navItem.__typename === "ComponentElementButtonlink" ? (
                 <Link
-                  key={index}
-                  href={productItem.link}
-                  sx={{
+                  href={navItem.link}
+                  style={{
                     textDecoration: "none",
-                    position: "absolute",
-                    top: `${40 + 35 * index}px`,
-                    zIndex: "100",
+                    color: navItem.colors.text, 
+                    backgroundColor: navItem.colors.bgcolor,
                   }}
                 >
-                  <DropDown>{productItem.title}</DropDown>
+                  <ButtonStyles>{navItem.Title}</ButtonStyles>
                 </Link>
-              ))}
-            </ProductsLink>
-          )}
-          {buttonLink && <ButtonStyles>{buttonLink.title}</ButtonStyles>}
+              ) : (
+                <Link
+                  href={navItem.link}
+                  style={{ textDecoration: "none" }}
+                >
+                  <AnchorLink>{navItem.Title}</AnchorLink>
+                </Link>
+              )}
+            </React.Fragment>
+          ))}
         </ListNavbar>
       </HeaderDiv>
       <StyledIcon onClick={toggleNavbar}>

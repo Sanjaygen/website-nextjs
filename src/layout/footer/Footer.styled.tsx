@@ -45,8 +45,8 @@ export const DivWrapper = styled("div")`
 `;
 
 export const TypographyStyled = styled(Typography)`
-  background-color: #266949;
-  color: white;
+  // background-color: #266949;
+  // color: white;
   padding-top: 7px;
   padding-right: 20px;
   padding-bottom: 7px;

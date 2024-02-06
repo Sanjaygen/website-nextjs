@@ -2,10 +2,10 @@ import { Typography, styled } from "@mui/material";
 
 
 export const StyledAboutUsContainer = styled('div')`
-  background-image: url('http://ishwara.in/img/slide3.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right !important;
+
 `;
 
 export const StyledLeftContent = styled('div')`
@@ -23,7 +23,7 @@ export const StyledLeftContent = styled('div')`
 `;
 
 export const StyledLeftPara = styled(Typography)`
-  color: white;
+  // color: white;
   font-size: 13px;
   line-height: 24px;
   margin-bottom: 20px;
@@ -56,6 +56,6 @@ export const ContentWrapper = styled('div')`
   display: flex;
   flex-wrap: wrap;
   flex-basis:58.333%;
-  background: #155d338c;
+  // background: #155d338c;
   padding: 35px 50px 35px 48px;
 `;
