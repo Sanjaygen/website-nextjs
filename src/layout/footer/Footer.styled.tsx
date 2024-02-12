@@ -1,9 +1,10 @@
+import { appColors } from "@/theme/colorConfig";
 import { Link, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
-export const FooterWrapper = styled("footer")`
-  // background-color: #49785f;
-  color: #dddd;
+export const FooterWrapper = styled("footer")<{ bgColor: string , textColor:string}>`
+background: ${({bgColor}) => bgColor || appColors['white']};
+color: ${({textColor}) => textColor || appColors['black']};
   padding-top: 60px;
   padding-right: 20px;
   padding-bottom: 50px;
@@ -44,9 +45,9 @@ export const DivWrapper = styled("div")`
   cursor: pointer;
 `;
 
-export const TypographyStyled = styled(Typography)`
-  // background-color: #266949;
-  // color: white;
+export const TypographyStyled = styled(Typography)<{ bgColor: string , textColor:string}>`
+background: ${({bgColor}) => bgColor || appColors['white']};
+color: ${({textColor}) => textColor || appColors['black']};
   padding-top: 7px;
   padding-right: 20px;
   padding-bottom: 7px;

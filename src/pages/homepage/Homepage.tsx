@@ -14,7 +14,7 @@ import Blog from "../documents/blog/Blog";
 
 
 const HomePage = () => {
-  const { data, loading, error } = useQuery(QUERY);
+  const { data} = useQuery(QUERY);
   const homeData = data?.homes
   const {PRODUCTS,aboutus,clientreviews,client,Details,contactheader,blogcontent,footer} =  homeData?.data[0]?.attributes || {}
    console.log(PRODUCTS,'PRODUCTS')

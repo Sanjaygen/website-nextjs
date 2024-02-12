@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const SlideContainer = styled("div")`
   display: flex;
   margin-bottom:-15px;
-  // padding-bottom:50px;
   overflow-y:hidden;
   overflow-x:scroll; 
   padding: 15px;

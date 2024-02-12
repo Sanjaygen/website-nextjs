@@ -9,20 +9,17 @@ import {
   StyledLeftPara,
   StyledRightContent
 } from './about.styled'
-import { useQuery } from '@apollo/client';
-import { QUERY } from '@/pages/homepage/query';
 import { api } from '@/service/backend-api';
 
 const AboutUs = (props: any) => {
 
   const about = props;
   console.log('about',about)
-
-  const { loading, error, data } = useQuery(QUERY);
-
+  const aboutBgColor =  about[0]?.colors?.theme[0]?.colors?.bgcolor;
+  const aboutColor = about[0]?.colors?.theme[0]?.colors?.text;
   const LeftContent = () => {
     return (
-      <StyledLeftContent style={{ color:`${about[0]?.colors?.theme[0]?.colors?.text}`}}>
+      <StyledLeftContent textColor={aboutColor}>
         <Head variant='h2'>{about[0]?.Title}</Head>
         <StyledLeftPara >{about[0]?.description1}</StyledLeftPara>
         <StyledLeftPara >{about[0]?.description2}</StyledLeftPara>
@@ -45,7 +42,7 @@ const AboutUs = (props: any) => {
   return (
 
     <StyledAboutUsContainer style={{ background: `url(${api + about[0]?.backgroundImage?.data[0]?.attributes?.url})`}} >
-      <ContentWrapper style={{ backgroundColor: `${about[0]?.colors?.theme[0]?.colors?.bgcolor}`}}>
+      <ContentWrapper bgColor={aboutBgColor}>
         {LeftContent()}
         {RightContent()}
       </ContentWrapper>

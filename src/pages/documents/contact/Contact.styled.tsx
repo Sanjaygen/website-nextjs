@@ -1,10 +1,10 @@
+import { appColors } from "@/theme/colorConfig";
 import { Button, Container, Link, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const BackgroundImage = styled("div")`
   margin-bottom:50px;
   position: relative;
-  // background: url('http://ishwara.in/img/contact.jpg');
   height: 27vh;
   background-color: transparent;
     background-position-x: center;
@@ -12,14 +12,14 @@ export const BackgroundImage = styled("div")`
 
     
 `;
-export const Overlay = styled("div")`
+export const Overlay = styled("div")<{ bgColor: string}>`
+  background: ${({bgColor}) => bgColor || appColors['white']};
   padding: 20px;
   text-align: center;
   color: #fff;
   font-size: 40px;
   line-height: 40px;
   opacity: 1;
-  // background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
   left: 0;
   position: absolute;
@@ -82,11 +82,11 @@ export const StyledFormContainer = styled(Container)`
     flex-direction: row;
   }
 `;
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)<{ bgColor: string}>`
+  background: ${({bgColor}) => bgColor || appColors['white']};
   border-radius: 30px;
   display: inline-block;
   color: #fff;
-  // background-color: #266949 ;
   line-height: 1;
   margin-top: 10px;
   padding: 13px 45px;

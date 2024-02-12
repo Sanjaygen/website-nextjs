@@ -1,7 +1,8 @@
 import React from "react";
-import { BackgroundImage, Overlay, Title } from "../contact/Contact.styled";
 import {
+  BackgroundImage,
   ImageContainer,
+  Overlay,
   StyledBox,
   StyledButton,
   StyledDate,
@@ -9,11 +10,11 @@ import {
   StyledLink,
   StyledSubtitle,
   StyledTitle,
+  Title,
 } from "./Blog.styled";
 import {
   Box,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Container,
@@ -27,9 +28,7 @@ import { BlogQuery } from "./query";
 import { api } from "@/service/backend-api";
 
 const Blog = () => {
-  const { loading, error, data } = useQuery(BlogQuery);
-//   console.log("data", data);
-
+  const {  data } = useQuery(BlogQuery);
   const { blogs } = data || {};
   const { blogbanner, bloglist } = blogs?.data?.[0].attributes || {};
 
@@ -41,11 +40,16 @@ const Blog = () => {
     console.log(`${api}${url}`,'url-----')
     return `${api}${url}`
   }
+  const blogBgColor = blogbanner?.[0]?.colors?.theme?.[0]?.colors?.bgcolor;
+  const blogText = blogbanner?.[0]?.colors?.theme?.[0]?.colors?.text;
+  const blogButton = bloglist?.[9]?.blogbutton?.[0]?.colors?.button[0]?.colors?.bgcolor;
+
+
   
   return (
     <>
       <BackgroundImage style={{ background: `url(${api + blogbanner?.[0]?.backgroundImage?.data[0]?.attributes?.url})`}}>
-        <Overlay style={{ backgroundColor: `${ blogbanner?.[0]?.colors?.theme[0]?.colors?.bgcolor}`}}>
+        <Overlay bgColor={blogBgColor} textColor={blogText}>
           <Title>{blogbanner?.[0]?.title}</Title>
         </Overlay>
         <ImageContainer>
@@ -66,7 +70,7 @@ const Blog = () => {
                   marginLeft: { xs: 0, sm: "40px" },
                 }}
               >
-                <StyledDate>{result.date}</StyledDate>
+                <StyledDate textColor={blogText}>{result.date}</StyledDate>
                 <CardMedia
                   component="img"
                   image={getIamge(result.image)}
@@ -104,7 +108,7 @@ const Blog = () => {
                       fontWeight: 300,
                     }}
                   >
-                    By
+                    {bloglist?.[9]?.blogauthor?.[0]?.content}
                     <Link
                       href="/"
                       sx={{
@@ -116,7 +120,7 @@ const Blog = () => {
                       }}
                     >
                       {" "}
-                      admin
+                      {bloglist?.[9]?.blogauthor?.[0]?.authorlink}
                     </Link>
                   </Typography>
                 </StyledBox>
@@ -128,7 +132,7 @@ const Blog = () => {
                   {result.description}
                 </StyledDescription>
                 <Box>
-                  <StyledButton href="/">Read more</StyledButton>
+                  <StyledButton href="/" textColor={blogText} bgColor= {blogButton}>{bloglist?.[9]?.blogbutton?.[0]?.Title}</StyledButton>
                 </Box>
               </CardContent>
             </Grid>

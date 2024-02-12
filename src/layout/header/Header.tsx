@@ -24,8 +24,6 @@ import { HeaderQuery } from "./Query";
 
 const Header = () => {
   const { loading, error, data } = useQuery(HeaderQuery);
-  //  console.log('data',data);
-
   const [isClick, setisClick] = useState(false);
   const toggleNavbar = () => {
     setisClick(!isClick);
@@ -36,19 +34,18 @@ const Header = () => {
   
   const headersData = data?.headers?.data[0]?.attributes;
 
-  // console.log('header',headersData);
-  
   const logoAttributes = headersData.navbar
     .filter((item: any) => item.__typename === "ComponentNavBarImages")
     .map((item: any) => item.logo.data[0].attributes);
 
   const imageLogo = logoAttributes[0].url
   const alt = logoAttributes[0].alternativeText
-
+  const headerBgColor =  headersData.Head[0].colors.theme[0].colors.bgcolor;
+  const textColor = headersData.Head[0].colors.theme[0].colors.text;
 
   return (
     <>
-      <TopHeader style={{backgroundColor:`${headersData.Head[0].colors.theme[0].colors.bgcolor}`,color:`${headersData.Head[0].colors.theme[0].colors.text}`}}>
+      <TopHeader bgColor={headerBgColor} textColor={textColor} >
         <TopTypography variant="body2">
           {headersData.Head[0].content}
         </TopTypography>

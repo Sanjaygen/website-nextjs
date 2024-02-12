@@ -1,9 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-
-import { useQuery } from "@apollo/client";
 import { StyledLink, StyledTypography, StyledTypographyWrapper } from "./ProductDetails.styled";
-import { QUERY } from "@/pages/homepage/query";
 
 const renderDescriptionContent = (descriptionData:any) => {
   return (
