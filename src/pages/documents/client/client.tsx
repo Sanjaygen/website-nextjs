@@ -16,8 +16,6 @@ export const Client = (props: any) => {
     const clientreviews = props;
     console.log('clientreviews',clientreviews)
 
-    const { loading, error, data } = useQuery(QUERY);
-
     return (
         <>
             <StyledClientContainer style={{ background: `url(${api + clientreviews[0]?.backgroundImage?.data[0]?.attributes?.url})`}}>

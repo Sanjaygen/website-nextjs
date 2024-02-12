@@ -5,18 +5,18 @@ query GetHomes {
   homes {
     data {
       attributes {
-        Title
         PRODUCTS {
           ... on ComponentProductProduct {
+            Title
+            link
             productimages {
               data {
                 attributes {
+                  alternativeText
                   url
                 }
               }
             }
-            Title
-            link
           }
         }
         aboutus {
@@ -26,20 +26,19 @@ query GetHomes {
           description3
           description4
           colors
-          backgroundImage {
-            data {
-              attributes {
-                url
-                alternativeText
-                name
-              }
-            }
-          }
           image {
             data {
               attributes {
-                url
                 alternativeText
+                url
+              }
+            }
+          }
+          backgroundImage {
+            data {
+              attributes {
+                alternativeText
+                url
               }
             }
           }
@@ -58,57 +57,21 @@ query GetHomes {
             }
           }
         }
-        client{
-          clientlogo{
-         logos{
-          data{
-            attributes{
-              alternativeText
-              url
+        client {
+          clientlogo {
+            logos {
+              data {
+                attributes {
+                  alternativeText
+                  url
+                }
+              }
             }
           }
         }
-          }
-        }
-        Details{
+        Details {
           heading
           description
-        }
-        footer{
-          ...on ComponentContactContactus{
-            title
-            addressdetail{
-              content
-            }
-            emaildetail{
-              content
-              
-            }
-            phonedetail{
-              number
-            }
-          }
-          ... on ComponentProfiledetailCompanyprofile{
-            title
-            company{
-              content
-            }
-          }
-          ... on ComponentProfiledetailService{
-            title
-            company{
-              content
-            }
-          }
-          ...on ComponentProfiledetailSocialnetwork{
-            title
-            description
-          }
-          ...on ComponentProfiledetailProduct{
-            title
-            content
-            colors
-          }
         }
       }
     }

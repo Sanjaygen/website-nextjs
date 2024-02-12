@@ -2,8 +2,9 @@ import { Button, Container, Link, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const BackgroundImage = styled("div")`
+  margin-bottom:50px;
   position: relative;
-  background: url('http://ishwara.in/img/contact.jpg');
+  // background: url('http://ishwara.in/img/contact.jpg');
   height: 27vh;
   background-color: transparent;
     background-position-x: center;
@@ -18,7 +19,7 @@ export const Overlay = styled("div")`
   font-size: 40px;
   line-height: 40px;
   opacity: 1;
-  background-color: rgba(0, 0, 0, 0.3);
+  // background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
   left: 0;
   position: absolute;
@@ -84,7 +85,8 @@ export const StyledFormContainer = styled(Container)`
 export const StyledButton = styled(Button)`
   border-radius: 30px;
   display: inline-block;
-  background-color: #266949 ;
+  color: #fff;
+  // background-color: #266949 ;
   line-height: 1;
   margin-top: 10px;
   padding: 13px 45px;
