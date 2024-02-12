@@ -24,8 +24,6 @@ const ProductDetails = (props: any) => {
   const productDetail = props;
   console.log('productDetail', productDetail);
 
-  const { loading, error, data } = useQuery(QUERY);
-
   const descriptionData = productDetail[0]?.description[0]?.children || [];
   const tubsDescriptionData = productDetail[1]?.description[0]?.children || [];
 

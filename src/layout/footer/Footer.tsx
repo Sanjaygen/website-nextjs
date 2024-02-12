@@ -16,59 +16,59 @@ import {
   TypographyStyled,
 } from "./Footer.styled";
 import { useQuery } from "@apollo/client";
-import { QUERY } from "@/pages/homepage/query";
+import { FooterQuery } from "./query";
 
-const FooterMain = (props:any) => {
-  const footers = props;
-  console.log('footers',footers)
-
-  const { loading, error, data } = useQuery(QUERY);
-
+const FooterMain = () => {
+  const { loading, error, data } = useQuery(FooterQuery);
+  const { footers } = data || {};
+  const { footercontents,colors } = footers?.data?.[0].attributes || {};
+  console.log('colors',colors );
+  console.log('footercontents',footercontents)
   return (
     <>
-      <FooterWrapper>
+      <FooterWrapper style={{ backgroundColor: `${colors?.theme?.[0].colors?.bgcolor}`,color:`${colors?.theme?.[0].colors?.text}`}}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
-            <CustomTypography variant="h3" sx={{ marginLeft: {xs: 0 , lg: '-90px'} }}>{footers[0]?.title}</CustomTypography>
+            <CustomTypography variant="h3" sx={{ marginLeft: {xs: 0 , lg: '-90px'} }}>{footercontents?.[0]?.title}</CustomTypography>
             <Typography variant="body2" sx={{ marginTop: "10px", marginLeft: {xs: 0 , lg: '-90px'}, lineHeight: '30px' }}>
-              <RoomIcon sx={{ fontSize: 15, marginRight: 1 }} /> {footers[0]?.addressdetail[0]?.content}</Typography>
+              <RoomIcon sx={{ fontSize: 15, marginRight: 1 }} /> {footercontents?.[0]?.addressdetail?.[0]?.content}</Typography>
             <Typography variant="body2" sx={{ marginTop: "15px" }}>
-              <EmailIcon sx={{ fontSize: 15, marginRight: 1, marginLeft: {xs: 0 , lg: '-90px'} }} />{footers[0]?.emaildetail[0]?.content}
+              <EmailIcon sx={{ fontSize: 15, marginRight: 1, marginLeft: {xs: 0 , lg: '-90px'} }} />{footercontents?.[0]?.emaildetail[0]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "15px" }}>
-              <PhoneIcon sx={{ fontSize: 15, marginRight: 1, marginLeft:{xs: 0 , lg: '-90px'} }} />{footers[0]?.phonedetail[0]?.number}
+              <PhoneIcon sx={{ fontSize: 15, marginRight: 1, marginLeft:{xs: 0 , lg: '-90px'} }} />{footercontents?.[0]?.phonedetail[0]?.number}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 }, marginLeft: {xs: 0 , lg: '30px'} }}>
-            <CustomTypography variant="h3">{footers[1]?.title}</CustomTypography>
+            <CustomTypography variant="h3">{footercontents?.[1]?.title}</CustomTypography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-              {footers[1]?.company[0]?.content}
+              {footercontents?.[1]?.items?.[0]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-            {footers[1]?.company[1]?.content}
+            {footercontents?.[1]?.items?.[1]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-            {footers[1]?.company[2]?.content}
+            {footercontents?.[1]?.items?.[2]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-            {footers[1]?.company[3]?.content}
+            {footercontents?.[1]?.items?.[2]?.content}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
             <CustomTypography variant="h3">
-            {footers[2]?.title}
+            {footercontents?.[2]?.title}
             </CustomTypography>
             <Grid container spacing={0} sx={{ marginTop: "10px" }}>
               <Grid item xs={12} md={6}>
-                <Typography variant="body2">{footers[2]?.company[0]?.content}</Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footers[2]?.company[1]?.content}</Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footers[2]?.company[2]?.content}</Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footers[2]?.company[3]?.content}</Typography>
+                <Typography variant="body2">{footercontents?.[2]?.items?.[0]?.content}</Typography>
+                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footercontents?.[2]?.items?.[1]?.content}</Typography>
+                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footercontents?.[2]?.items?.[2]?.content}</Typography>
+                <Typography variant="body2" sx={{ marginTop: "10px" }}>{footercontents?.[2]?.items?.[3]?.content}</Typography>
               </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginRight: '-50px', marginLeft: {xs: 0 , lg: '20px'} }}>
-            <CustomTypography variant="h3">{footers[3]?.title}</CustomTypography>
+            <CustomTypography variant="h3">{footercontents?.[3]?.title}</CustomTypography>
             <DivWrapper
               sx={{
                 gap: "20px",
@@ -115,13 +115,13 @@ const FooterMain = (props:any) => {
                 ":hover": { background: '#fd7e14' }
               }} />
             </DivWrapper>
-            <Typography variant="body2" sx={{ marginTop: "10px", lineHeight: '25px' }}>{footers[3]?.description}</Typography>
+            <Typography variant="body2" sx={{ marginTop: "10px", lineHeight: '25px' }}>{footercontents?.[3]?.description}</Typography>
           </Grid>
         </Grid>
       </FooterWrapper>
-      <TypographyStyled variant="body2" sx={{marginLeft:{xs:'0px'}}} style={{ backgroundColor: `${footers[4]?.colors?.copy[0]?.colors?.becolor}`,color:`${footers[4]?.colors.copy[0].colors.text}`}}>
-      {footers[4]?.title}
-        <StyledLink href="/">{footers[4]?.content}</StyledLink>
+      <TypographyStyled variant="body2" sx={{marginLeft:{xs:'0px'}}} style={{ backgroundColor: `${footercontents?.[4]?.colors?.copy?.[0]?.colors?.bgcolors}`,color:`${footercontents?.[4]?.colors.copy?.[0].colors.text}`}}>
+      {footercontents?.[4]?.title}
+        <StyledLink href="/">{footercontents?.[4]?.link}</StyledLink>
       </TypographyStyled>
     </>
   );

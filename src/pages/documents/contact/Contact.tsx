@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { Box, TextField, TextareaAutosize, Typography } from "@mui/material";
 import {
@@ -15,16 +16,27 @@ import {
   Title,
   TypographyStyled,
 } from "./Contact.styled";
+import { api } from "@/service/backend-api";
+import { useQuery } from "@apollo/client";
+import { ContactQuery } from "./query";
 
 export const Contact = () => {
+
+  const { loading, error, data } = useQuery(ContactQuery);
+
+  const { contactUses } = data || {};
+  const { contactbanner, contactdetails } = contactUses?.data?.[0].attributes || {};
+  console.log('contactbanner',contactbanner)
+  console.log('contactdetails',contactdetails)
+  
   return (
     <>
-      <BackgroundImage>
-        <Overlay>
-          <Title>Contact</Title>
+      <BackgroundImage style={{ background: `url(${api + contactbanner?.[0].backgroundImage?.data[0]?.attributes?.url})`}}>
+        <Overlay style={{ backgroundColor: `${contactbanner?.[0].colors?.theme?.[0]?.colors?.bgcolor}`}}>
+          <Title>{contactbanner?.[0]?.title}</Title>
         </Overlay>
         <NavbarContainer>
-          <StyledLink href="/"> Home</StyledLink>| Contact
+          <StyledLink href="/"> {contactbanner?.[0]?.link}</StyledLink>{contactbanner?.[0]?.content}
         </NavbarContainer>
       </BackgroundImage>
       <Styledcontainer>
@@ -32,7 +44,7 @@ export const Contact = () => {
           <Contactdiv>
             <form style={{ display: "flex", flexDirection: "column" }}>
               <LabelContainer>
-                <TypographyStyled variant="body2">Name*</TypographyStyled>
+                <TypographyStyled variant="body2">{contactdetails?.[0]?.label}</TypographyStyled>
                 <TextField
                   required
                   id="name"
@@ -42,7 +54,7 @@ export const Contact = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                <TypographyStyled variant="body2">Email*</TypographyStyled>
+                <TypographyStyled variant="body2">{contactdetails?.[1]?.label}</TypographyStyled>
                 <TextField
                   required
                   id="email"
@@ -53,7 +65,7 @@ export const Contact = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                <TypographyStyled variant="body2">phone No*</TypographyStyled>
+                <TypographyStyled variant="body2">{contactdetails?.[2]?.label}</TypographyStyled>
                 <TextField
                   required
                   id="phone"
@@ -63,7 +75,7 @@ export const Contact = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                <TypographyStyled variant="body2">Message*</TypographyStyled>
+                <TypographyStyled variant="body2">{contactdetails?.[3]?.label}</TypographyStyled>
                 <TextareaAutosize
                   id="message"
                   aria-label="message"
@@ -77,8 +89,8 @@ export const Contact = () => {
               </LabelContainer>
               <LabelContainer>
                 <FormGroup1>
-                  <StyledButton type="submit" variant="contained">
-                    SEND MESSAGE
+                  <StyledButton type="submit" variant="contained" style={{ backgroundColor: `${contactdetails?.[4]?.colors?.button[0]?.colors?.bgcolor}`}}>
+                  {contactdetails?.[4]?.Title}
                   </StyledButton>
                 </FormGroup1>
               </LabelContainer>
@@ -90,38 +102,38 @@ export const Contact = () => {
                 variant="h1"
                 sx={{ fontSize: "17px", marginBottom: "10px" }}
               >
-                Meet Our Managing Director:
+                {contactdetails?.[5]?.content}
               </Typography>
               <Box mb={3}>
                 <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-                  Saurabh Jain{" "}
+                {contactdetails?.[6]?.content}
                 </Typography>
                 <Typography
                   variant="caption"
                   display="block"
                   sx={{ fontSize: "13px" }}
                 >
-                  Managing Director
+                 {contactdetails?.[7]?.content}
                 </Typography>
                 <Typography
                   variant="caption"
                   display="block"
                   sx={{ fontSize: "13px" }}
                 >
-                  Ph- 9811062289
+                  {contactdetails?.[8]?.content}
                 </Typography>
                 <Typography
                   variant="caption"
                   display="block"
                   sx={{ fontSize: "13px" }}
                 >
-                  Mail- md@ishwara.in
+                  {contactdetails?.[9]?.content}
                 </Typography>
               </Box>
             </div>
             <MapDiv>
               <img
-                src="https://i.stack.imgur.com/HILmr.png"
+                src={api+ contactdetails?.[10]?.mapimage?.data[0]?.attributes?.url}
                 alt="Map Image"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />

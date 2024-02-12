@@ -16,12 +16,14 @@ import Blog from "../documents/blog/Blog";
 const HomePage = () => {
   const { data, loading, error } = useQuery(QUERY);
   const homeData = data?.homes
-  const {PRODUCTS,aboutus,clientreviews,client,Details,footer} =  homeData?.data[0]?.attributes || {}
+  const {PRODUCTS,aboutus,clientreviews,client,Details,contactheader,blogcontent,footer} =  homeData?.data[0]?.attributes || {}
    console.log(PRODUCTS,'PRODUCTS')
    console.log(aboutus,'aboutus')
    console.log(clientreviews,'clientreviews')
    console.log(client,'client')
    console.log(Details,'Details')
+   console.log(contactheader,'contactheader')
+   console.log(blogcontent,'blogcontent')
    console.log('footer',footer)
 
   
@@ -35,8 +37,8 @@ const HomePage = () => {
       <Client {...clientreviews} />
       <Store {...client}/> 
       <ProductDetails {...Details}/>
-      {/* <Contact /> */}
-      <Blog/> 
+      <Contact {...contactheader} />
+      <Blog {...blogcontent} /> 
       <Footer {...footer} />
     </>
   );

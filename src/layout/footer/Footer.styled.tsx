@@ -2,7 +2,7 @@ import { Link, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const FooterWrapper = styled("footer")`
-  background-color: #49785f;
+  // background-color: #49785f;
   color: #dddd;
   padding-top: 60px;
   padding-right: 20px;

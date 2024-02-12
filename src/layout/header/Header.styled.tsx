@@ -51,7 +51,7 @@ export const AnchorLink = styled("ul")`
   font-size: 20px;
   font-family: oswald;
   margin-top:40px;
-  cursor:pointer;
+  cursor:;
   text-decoration:none;
   &:hover {
     color: #ffc107;
