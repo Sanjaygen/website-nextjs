@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 export const StyledTypographyWrapper = styled(Typography)`
   margin-bottom: 0.5rem;
-  // position:relative;
-  // top:15px;
   font-weight: 500;
   line-height: 1.2;
   font-size: 2.5em;

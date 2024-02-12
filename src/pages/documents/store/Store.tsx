@@ -6,7 +6,7 @@ import { api } from "@/service/backend-api";
 import { SlideContainer, SlideItem } from "./Store.styled";
 
 const Store = () => {
-  const { loading, error, data } = useQuery(QUERY);
+  const {  data } = useQuery(QUERY);
   const storeData = data?.homes?.data || [];
 
   return (

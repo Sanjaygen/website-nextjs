@@ -19,14 +19,20 @@ import { useQuery } from "@apollo/client";
 import { FooterQuery } from "./query";
 
 const FooterMain = () => {
-  const { loading, error, data } = useQuery(FooterQuery);
+  const { data } = useQuery(FooterQuery);
   const { footers } = data || {};
   const { footercontents,colors } = footers?.data?.[0].attributes || {};
   console.log('colors',colors );
   console.log('footercontents',footercontents)
+  const footerBgColor = colors?.theme?.[0].colors?.bgcolor;
+  const footerText = colors?.theme?.[0].colors?.text;
+  const lastBgColor = footercontents?.[4]?.colors?.copy?.[0]?.colors?.bgcolors;
+  const lastText = footercontents?.[4]?.colors.copy?.[0].colors.text;
+
+
   return (
     <>
-      <FooterWrapper style={{ backgroundColor: `${colors?.theme?.[0].colors?.bgcolor}`,color:`${colors?.theme?.[0].colors?.text}`}}>
+      <FooterWrapper bgColor={footerBgColor} textColor={footerText}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
             <CustomTypography variant="h3" sx={{ marginLeft: {xs: 0 , lg: '-90px'} }}>{footercontents?.[0]?.title}</CustomTypography>
@@ -119,7 +125,7 @@ const FooterMain = () => {
           </Grid>
         </Grid>
       </FooterWrapper>
-      <TypographyStyled variant="body2" sx={{marginLeft:{xs:'0px'}}} style={{ backgroundColor: `${footercontents?.[4]?.colors?.copy?.[0]?.colors?.bgcolors}`,color:`${footercontents?.[4]?.colors.copy?.[0].colors.text}`}}>
+      <TypographyStyled variant="body2" sx={{marginLeft:{xs:'0px'}}} bgColor={lastBgColor} textColor= {lastText} >
       {footercontents?.[4]?.title}
         <StyledLink href="/">{footercontents?.[4]?.link}</StyledLink>
       </TypographyStyled>

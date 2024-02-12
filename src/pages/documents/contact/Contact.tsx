@@ -22,17 +22,20 @@ import { ContactQuery } from "./query";
 
 export const Contact = () => {
 
-  const { loading, error, data } = useQuery(ContactQuery);
+  const { data } = useQuery(ContactQuery);
 
   const { contactUses } = data || {};
   const { contactbanner, contactdetails } = contactUses?.data?.[0].attributes || {};
   console.log('contactbanner',contactbanner)
   console.log('contactdetails',contactdetails)
+
+  const contactBgColor = contactbanner?.[0].colors?.theme?.[0]?.colors?.bgcolor;
+  const contactButton = contactdetails?.[4]?.colors?.button[0]?.colors?.bgcolor;
   
   return (
     <>
       <BackgroundImage style={{ background: `url(${api + contactbanner?.[0].backgroundImage?.data[0]?.attributes?.url})`}}>
-        <Overlay style={{ backgroundColor: `${contactbanner?.[0].colors?.theme?.[0]?.colors?.bgcolor}`}}>
+        <Overlay bgColor={contactBgColor}>
           <Title>{contactbanner?.[0]?.title}</Title>
         </Overlay>
         <NavbarContainer>
@@ -89,7 +92,7 @@ export const Contact = () => {
               </LabelContainer>
               <LabelContainer>
                 <FormGroup1>
-                  <StyledButton type="submit" variant="contained" style={{ backgroundColor: `${contactdetails?.[4]?.colors?.button[0]?.colors?.bgcolor}`}}>
+                  <StyledButton type="submit" variant="contained" bgColor = {contactButton}>
                   {contactdetails?.[4]?.Title}
                   </StyledButton>
                 </FormGroup1>

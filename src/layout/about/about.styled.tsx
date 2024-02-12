@@ -1,3 +1,4 @@
+import { appColors } from "@/theme/colorConfig";
 import { Typography, styled } from "@mui/material";
 
 
@@ -8,13 +9,13 @@ export const StyledAboutUsContainer = styled('div')`
 
 `;
 
-export const StyledLeftContent = styled('div')`
+export const StyledLeftContent = styled('div') <{textColor:string}>`
+color: ${({textColor}) => textColor || appColors['black']};
   position: relative;
   margin-right: 20px;
   width: 58%;
   display: block;
   padding: 0 20px;
-  color: white;
   font-size: 13px;
   line-height: 24px;
   @media (max-width: 772px ) {
@@ -23,7 +24,6 @@ export const StyledLeftContent = styled('div')`
 `;
 
 export const StyledLeftPara = styled(Typography)`
-  // color: white;
   font-size: 13px;
   line-height: 24px;
   margin-bottom: 20px;
@@ -52,10 +52,10 @@ export const StyledRightContent = styled('div')`
   }
 `;
 
-export const ContentWrapper = styled('div')`
+export const ContentWrapper = styled('div')<{ bgColor: string }>`
   display: flex;
+background: ${({bgColor}) => bgColor || appColors['white']};
   flex-wrap: wrap;
   flex-basis:58.333%;
-  // background: #155d338c;
   padding: 35px 50px 35px 48px;
 `;

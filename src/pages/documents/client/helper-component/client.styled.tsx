@@ -1,5 +1,5 @@
+import { appColors } from "@/theme/colorConfig";
 import { Box, Button, Container, Link, MobileStepper, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import styled from "styled-components";
 
 export const StyledClientContainer = styled.section`
@@ -8,8 +8,8 @@ export const StyledClientContainer = styled.section`
     background-repeat: no-repeat;
 `;
 
-export const ClientContainer = styled('div')`
-    // background: rgb(57 118 84 / 61%);
+export const ClientContainer = styled('div')<{ bgColor: string }>`
+    background: ${({bgColor}) => bgColor || appColors['white']};
     padding-bottom: 40px !important;
     padding-top: 70px !important;
 `;

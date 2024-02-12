@@ -1,9 +1,10 @@
+import { appColors } from "@/theme/colorConfig";
 import { Link, Typography } from "@mui/material";
 import styled from "styled-components";
 
-export const TopHeader = styled("div")`
-  // background-color: #1f5b36;
-  // color: #fff;
+export const TopHeader = styled("div")<{ bgColor: string , textColor:string}>`
+  background: ${({bgColor}) => bgColor || appColors['white']};
+  color: ${({textColor}) => textColor || appColors['black']};
   padding: 10px;
 `;
 export const TopTypography = styled(Typography)`

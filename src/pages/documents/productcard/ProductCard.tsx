@@ -8,9 +8,10 @@ import { api } from '@/service/backend-api';
 
 const ActionAreaCard = (props : any) => {
   console.log('product',props);
-  const { data, loading, error,  } = useQuery(QUERY);
+  const { data} = useQuery(QUERY);
 
   const homesData = data?.homes?.data || [];
+  
 
   return (
     <>

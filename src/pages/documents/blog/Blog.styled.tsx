@@ -1,7 +1,40 @@
+import { appColors } from "@/theme/colorConfig";
 import { Box, Link, Typography } from "@mui/material";
 import styled from "styled-components";
 
+export const Overlay = styled("div")<{ bgColor: string, textColor: string}>`
+  background: ${({bgColor}) => bgColor || appColors['white']};
+  color: ${({textColor}) => textColor || appColors['black']};
+  padding: 20px;
+  text-align: center;
+  font-size: 40px;
+  line-height: 40px;
+  opacity: 1;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;;
+  `;
+  export const Title = styled("h2")`
+  position: relative;
+  top: 30px;
+  margin: 0;
+  font-family: oswald;
+  padding: 0;
+  text-transform: uppercase;
+  font-size: 1em;
+`;
+export const BackgroundImage = styled("div")`
+  margin-bottom:50px;
+  position: relative;
+  height: 27vh;
+  background-color: transparent;
+    background-position-x: center;
+    background-repeat: no-repeat;
 
+    
+`;
 export const ImageContainer = styled(Typography)`
     color: #fff;
     bottom: 60px;
@@ -28,12 +61,11 @@ export const StyledBox = styled(Box)`
     margin-top:20px;
     margin-bottom:20px; 
 `
-export const StyledButton = styled(Link)`
+export const StyledButton = styled(Link)<{bgColor: string, textColor: string}>`
     border: 1px solid #c5c5c5;
     cursor:pointer;
     text-decoration:none;
     border-radius: 30px;
-    color: #747474;
     display: inline-block;
     margin-top: 25px;
     padding: 13px 45px;
@@ -42,8 +74,9 @@ export const StyledButton = styled(Link)`
     width: initial;
     transition: all 0.4s ease 0s;
     font-family: Oswald;
-    background: #266949;
-    color: #fff;
+    background: ${({bgColor}) => bgColor || appColors['white']};
+    color: ${({textColor}) => textColor || appColors['black']};
+
 `
 export const StyledTitle = styled(Link)`
      text-decoration:none;
@@ -79,11 +112,11 @@ export const StyledDescription = styled(Link)`
         color:#ce9634;
      }
 `
-export const StyledDate = styled(Typography)`
+export const StyledDate = styled(Typography)<{textColor: string}>`
      position:absolute;
      background:#686868;
      text-transform: uppercase;
      font-size:13px;
-     color:#fff;
+     color: ${({textColor}) => textColor || appColors['black']};
      padding:10px;
 `
