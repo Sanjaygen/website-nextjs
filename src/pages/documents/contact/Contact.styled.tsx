@@ -48,13 +48,14 @@ export const NavbarContainer = styled("div")`
 `;
 
 export const StyledLink = styled(Link)`
-  color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: normal;
-  opacity: 1;
-  text-decoration: none;
+color: #dedede;
+font-size: 15px;
+font-style: normal;
+opacity: 1;
+text-decoration: none;
+&:hover{
+    color:#fff;
+}
 `;
 
 export const Styledcontainer = styled("div")`
