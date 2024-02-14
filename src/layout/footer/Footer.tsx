@@ -57,7 +57,7 @@ const FooterMain = () => {
             {footercontents?.[1]?.items?.[2]?.content}
             </Typography>
             <Typography variant="body2" sx={{ marginTop: "10px" }}>
-            {footercontents?.[1]?.items?.[2]?.content}
+            {footercontents?.[1]?.items?.[3]?.content}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginBottom: { xs: "20px", sm: 0 } }}>
